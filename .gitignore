@@ -1,5 +1,41 @@
+# Composer / PHP
+vendor/
+
+# Local env
+.env
+
+# Backups and archives
+*.zip
+adpanel_Backup.zip
+
+# Logs and SQL dumps
+*.log
+*.sql
+
+# IDE / Editor
+/.idea/
+/.vscode/
+
+# Python virtualenv
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+/node_modules/
+
+# Caches / temp
+/.cache/
+*.tmp
 # .gitignore for CV. Magz Group Website
 # Created on January 28, 2026
+logs/
+*.log
+php_errors.log
+access.log
+
 
 # Logs
 logs/
