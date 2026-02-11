@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Main pages -->
+    <url>
+        <loc>https://magzgroup.co.id/</loc>
+        <lastmod>2026-01-28</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Product pages will be dynamically generated -->
+    <!-- Example product URL structure:
+    <url>
+        <loc>https://magzgroup.co.id/webpage/product_detail.php?part_number=EXAMPLE123</loc>
+        <lastmod>2026-01-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    -->
+
+    <!-- Brand pages -->
+    <url>
+        <loc>https://magzgroup.co.id/webpage/index.php?brand=Komatsu</loc>
+        <lastmod>2026-01-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://magzgroup.co.id/webpage/index.php?brand=Caterpillar</loc>
+        <lastmod>2026-01-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://magzgroup.co.id/webpage/index.php?brand=Volvo</loc>
+        <lastmod>2026-01-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://magzgroup.co.id/webpage/index.php?brand=Scania</loc>
+        <lastmod>2026-01-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Category pages examples -->
+    <url>
+        <loc>https://magzgroup.co.id/webpage/index.php?brand=Komatsu&amp;category=Engine</loc>
+        <lastmod>2026-01-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+</urlset>

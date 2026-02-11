@@ -1,0 +1,17 @@
+<?php
+// Contoh file konfigurasi koneksi database.
+// Salin file ini ke `kon.php` dan sesuaikan nilai-nilai berikut.
+
+$host = "localhost"; // alamat DB server
+$user = "root";      // username DB
+$pass = "";          // password DB
+$db   = "adpaneldb"; // nama database
+
+$kon = mysqli_connect($host, $user, $pass, $db);
+
+if (!$kon) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+
+// Simpan sebagai admin/System/kon.php setelah disesuaikan
+?>
