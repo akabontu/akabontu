@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  composer:
+    image: composer:2
+    working_dir: /app
+    volumes:
+      - ./:/app
+    entrypoint: ["composer"]
+    command: ["install", "--no-interaction", "--prefer-dist"]
+
+  php-apache:
+    image: php:8.1-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - composer

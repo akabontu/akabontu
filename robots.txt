@@ -1,0 +1,45 @@
+# robots.txt for CV. Magz Group Website
+# Created on January 28, 2026
+
+User-agent: *
+Allow: /
+
+# Allow all major search engines to crawl the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Meta
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Disallow admin and sensitive areas
+Disallow: /admin/
+Disallow: /conn/
+Disallow: /db/
+Disallow: /bin/
+Disallow: /*.log$
+Disallow: /*.tmp$
+Disallow: /maintenance.html
+
+# Allow sitemap
+Allow: /sitemap.xml
+
+# Crawl delay (optional - uncomment if needed)
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://magzgroup.co.id/sitemap.xml
