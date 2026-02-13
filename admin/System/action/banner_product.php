@@ -47,8 +47,11 @@ if (isset($_GET['toggle']) && isset($_GET['brand'])) {
 }
 
 // Add active column if not exists (one-time operation)
-$query = "ALTER TABLE banner_up ADD COLUMN IF NOT EXISTS active TINYINT(1) DEFAULT 1";
-mysqli_query($kon, $query);
+$colCheckSql = "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'banner_up' AND COLUMN_NAME = 'active'";
+$colCheck = mysqli_query($kon, $colCheckSql);
+if ($colCheck && mysqli_num_rows($colCheck) === 0) {
+    mysqli_query($kon, "ALTER TABLE banner_up ADD COLUMN active TINYINT(1) DEFAULT 1");
+}
 
 // Fetch distinct brands for dropdown
 $brands = [

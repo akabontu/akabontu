@@ -41,12 +41,17 @@ if (isset($_GET['toggle']) && isset($_GET['brand'])) {
 }
 
 // Add active column if not exists (one-time operation)
-$query = "ALTER TABLE logo_brand ADD COLUMN IF NOT EXISTS active TINYINT(1) DEFAULT 1";
-mysqli_query($kon, $query);
-
+$colCheckSql = "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'logo_brand' AND COLUMN_NAME = 'active'";
+$colCheck = mysqli_query($kon, $colCheckSql);
+if ($colCheck && mysqli_num_rows($colCheck) === 0) {
+    mysqli_query($kon, "ALTER TABLE logo_brand ADD COLUMN active TINYINT(1) DEFAULT 1");
+}
 // Add logo_img column if not exists
-$query = "ALTER TABLE logo_brand ADD COLUMN IF NOT EXISTS logo_img LONGBLOB";
-mysqli_query($kon, $query);
+$colCheckSql = "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'logo_brand' AND COLUMN_NAME = 'logo_img'";
+$colCheck = mysqli_query($kon, $colCheckSql);
+if ($colCheck && mysqli_num_rows($colCheck) === 0) {
+    mysqli_query($kon, "ALTER TABLE logo_brand ADD COLUMN logo_img LONGBLOB");
+}
 
 ?>
 <div class="container-fluid">
