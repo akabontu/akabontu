@@ -1,0 +1,27 @@
+# Security untuk folder images admin assets
+# Hanya izinkan file gambar untuk diakses
+
+# Izinkan hanya file gambar
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|bmp|ico|svg)$">
+    Require all granted
+</FilesMatch>
+
+# Blokir semua file executable dan script
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|aspx|sh|cgi|exe|bat|cmd)$">
+    Require all denied
+</FilesMatch>
+
+# Disable PHP execution untuk keamanan ekstra
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+
+# Prevent access to hidden files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Additional security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>

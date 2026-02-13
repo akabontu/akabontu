@@ -1,0 +1,15 @@
+# Proteksi file konfigurasi sensitif
+# File ini mencegah akses langsung ke file konfigurasi database
+
+<Files "kon.php">
+    Require all denied
+</Files>
+
+<Files "kon.php.example">
+    Require all denied
+</Files>
+
+# Proteksi file backup
+<FilesMatch "\.(bak|backup|old|temp)$">
+    Require all denied
+</FilesMatch>
