@@ -1,0 +1,4 @@
+# Proteksi folder database
+# Mencegah akses langsung ke file SQL
+
+Require all denied

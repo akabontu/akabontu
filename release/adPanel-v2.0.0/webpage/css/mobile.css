@@ -1,0 +1,1144 @@
+/* Mobile-specific CSS for Webpage Elements */
+/* This stylesheet provides responsive design for all webpage components */
+
+/* HEADER & BRANDING */
+@media (max-width: 767px) {
+   /* use dark header on mobile to match desktop theme */
+   #site-header {
+    background-color: transparent; /* let page background show through */
+    padding: 8px 10px !important;
+    margin: 0;
+    color: #e6eef8;
+  }
+
+  #site-header img {
+    height: 50px !important;
+    width: auto;
+  }
+
+  #site-header h2 {
+    font-size: 13px !important;
+    margin-bottom: 0;
+    line-height: 1.3;
+  }
+
+  /* allow the heading to break on mobile so text doesn't get cut off */
+  #site-header h2 br {
+    display: block;
+  }
+
+  #site-header .h5 {
+    font-size: 11px !important;
+    margin-bottom: 0;
+  }
+
+  #site-header p {
+    font-size: 10px !important;
+    margin-bottom: 4px !important;
+    display: block;
+    color: rgba(230,238,248,0.8);
+  }
+
+  .row.align-items-center {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .col-auto {
+    margin-right: 0 !important;
+  }
+}
+
+/* Apply dark page background and readable text colors on mobile */
+@media (max-width: 767px) {
+  body, .container, .bg-dark {
+    background-color: #0f1724 !important;
+    color: #e6eef8 !important;
+  }
+
+  /* make sure standard content text is readable */
+  .detail-value, .detail-label, .product-brand, .content, .breadcrumb, footer, #content {
+    color: #e6eef8 !important;
+  }
+}
+
+/* MENU GRID (mobile) - convert menu btn groups into a responsive grid */
+@media (max-width: 767px) {
+  /* target the inner menu wrapper and make it a full-width grid */
+  .container.p-2.bg-dark > .d-flex.flex-wrap {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    order: 1;
+    align-items: start;
+  }
+
+  /* Ensure the overall container places the menu in row 1
+     and the search form spans the full row beneath it */
+  .container.p-2.bg-dark {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: 6px;
+  }
+
+  .container.p-2.bg-dark > .d-flex.flex-wrap {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .container.p-2.bg-dark .menu-search,
+  .container.p-2.bg-dark #searchFormMenu {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    order: 0 !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+  }
+
+  /* make each btn-group behave like a grid cell */
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group {
+    display: flex !important;
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+    align-items: center;
+    position: relative;
+  }
+
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group .btn {
+    flex: 1 1 auto;
+    margin: 0;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* make the dropdown toggle compact so main button has more room */
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group .dropdown-toggle {
+    flex: 0 0 36px;
+    margin-left: 6px;
+    padding: 6px 8px;
+  }
+
+  /* dropdown menu sizing: keep it narrow and positioned to the right of the btn-group */
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group .dropdown-menu {
+    position: absolute;
+    right: 0;
+    left: auto;
+    min-width: 120px;
+    max-width: 220px;
+    white-space: normal;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group .dropdown-toggle {
+    flex: 0 0 auto;
+    margin-left: 6px;
+  }
+
+  /* ensure the parent container allows wrapping so the search form can drop below */
+  .container.p-2.bg-dark {
+    flex-wrap: wrap !important;
+  }
+
+  /* Ensure search form spans full width below the menu grid */
+  .container.p-2.bg-dark .menu-search {
+    order: 2 !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.03);
+  }
+
+  /* For very small screens, use single column menu */
+  @media (max-width: 420px) {
+    .container.p-2.bg-dark > .d-flex.flex-wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* TABLET TUNING: improve menu precision for widths between 768px and 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Make the overall menu container use grid so we can place the search row underneath */
+  .container.p-2.bg-dark {
+    display: grid;
+    /* two-column menu on tablet to match compact mobile layout */
+    grid-template-columns: 1fr;
+    gap: 6px;
+    align-items: start;
+    grid-auto-rows: auto;
+  }
+
+  .container.p-2.bg-dark > .d-flex.flex-wrap {
+    display: grid !important;
+    /* two-column compact menu on tablet */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    width: 100% !important;
+    align-items: start;
+    order: 1;
+    grid-auto-rows: auto;
+    /* menu occupies container columns; search will span full width below */
+  }
+
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group {
+    display: flex !important;
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+    align-items: center;
+    position: relative;
+    /* each btn-group fills its grid cell */
+  }
+
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group .btn {
+    flex: 1 1 auto;
+    margin: 0;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  /* keep dropdown toggle compact and aligned to the right */
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group .dropdown-toggle {
+    flex: 0 0 36px;
+    margin-left: 6px;
+    padding: 6px 8px;
+  }
+
+  .container.p-2.bg-dark > .d-flex.flex-wrap .btn-group .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    min-width: 140px;
+    max-width: 260px;
+    z-index: 60;
+  }
+
+  /* Keep the search full-width under the grid on tablet */
+  .container.p-2.bg-dark .menu-search {
+    order: 2 !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+  }
+
+  /* Ensure the search area occupies a full row below the menu */
+  .container.p-2.bg-dark .menu-search,
+  .container.p-2.bg-dark #searchFormMenu {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100% !important;
+    margin-top: 12px !important;
+    padding: 8px 0 !important;
+    /* force search to appear below menu in its own row */
+    display: block;
+  }
+
+  /* Slightly increase header text for tablet */
+  #site-header h2 {
+    font-size: 15px !important;
+  }
+
+  /* Precisely cap banner/carousel height on tablets for consistent layout */
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .page-banner,
+  .hero,
+  .header-banner,
+  .banner {
+    max-height: 300px !important;
+    overflow: hidden;
+  }
+
+  .carousel .carousel-item img,
+  .carousel-inner img,
+  .page-banner img,
+  .hero img,
+  .header-banner img,
+  .banner img,
+  .product-image img {
+    max-height: 300px !important;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* reduce vertical padding around header/banner area */
+  .container.p-2.bg-dark {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  /* Force search form to a single horizontal row on tablet */
+  .container.p-2.bg-dark .menu-search,
+  #searchFormMenu {
+    display: block;
+    width: 100% !important;
+  }
+
+  #searchFormMenu .input-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  #searchFormMenu .form-select {
+    flex: 0 0 160px;
+    min-width: 120px;
+    max-width: 220px;
+    padding: 8px 10px;
+    font-size: 13px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #e6eef8;
+  }
+
+  #searchFormMenu .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 8px 10px;
+    font-size: 13px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #e6eef8;
+  }
+
+  #searchFormMenu .btn {
+    flex: 0 0 100px;
+    padding: 8px 12px;
+    font-size: 13px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #e6eef8;
+  }
+
+  /* make search button stand out when hovered */
+  #searchFormMenu .btn:hover {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(14,165,233,0.6);
+  }
+
+  /* Gallery logo container for tablets (768px - 1024px)
+     - keeps logo visible without covering carousel controls */
+  .gallery-logo-container {
+    position: absolute !important;
+    bottom: 12px !important;
+    right: 12px !important;
+    background: none !important;
+    padding: 6px 8px !important;
+    border-radius: 8px !important;
+    z-index: 60 !important;
+    pointer-events: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .gallery-logo,
+  .gallery .logo {
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .gallery-logo-container .gallery-logo img,
+  .gallery-logo-container .gallery .logo img,
+  .gallery-logo img,
+  .gallery .logo img {
+    height: 40px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+}
+
+/* PRODUCT CARDS & THUMBNAILS */
+@media (max-width: 767px) {
+  .product-thumb {
+    height: 140px !important;
+    border-radius: 6px;
+  }
+
+  .product-thumb .image a {
+    display: block;
+    height: 100%;
+  }
+
+  .product-thumb-overlay {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .product-thumb-overlay img {
+    max-height: 140px;
+    object-fit: cover;
+  }
+
+  .no-image-lg {
+    height: 140px !important;
+    border-radius: 6px;
+  }
+
+  .card {
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+  }
+
+  .product-card {
+    display: block;
+    gap: 0;
+  }
+
+  /* Product card content */
+  .content {
+    padding: 8px !important;
+    background: transparent !important;
+    border-radius: 0 0 6px 6px;
+    color: #e6eef8 !important;
+  }
+
+  .detail-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 4px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .detail-label {
+    min-width: 90px;
+    width: auto;
+    flex: 0 0 110px;
+    color: rgba(230,238,248,0.65);
+    font-weight: 600;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .detail-value {
+    text-align: left;
+    color: #e6eef8;
+    font-size: 11px;
+    line-height: 1.4;
+    flex: 1 1 auto;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .product-brand {
+    font-size: 12px !important;
+    font-weight: 700;
+    color: #e6eef8;
+    margin-bottom: 2px;
+  }
+
+  /* Overlay label on product cards */
+  .overlay-label {
+    position: absolute;
+    bottom: 4px !important;
+    right: 4px !important;
+    background: transparent;
+    padding: 0;
+  }
+
+  .overlay-label img {
+    height: 50px !important;
+    width: auto;
+  }
+
+  /* Separate gallery logo class — keep smaller and distinct from product overlay */
+  .gallery-logo,
+  .gallery .logo {
+    position: absolute;
+    bottom: 6px !important;
+    right: 6px !important;
+    background: transparent;
+    padding: 0;
+  }
+
+  .gallery-logo img,
+  .gallery .logo img {
+    height: 40px !important;
+    width: auto;
+  }
+
+  /* WhatsApp button in product cards */
+  .button-wa {
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .btn-wa {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    display: inline-block;
+    background-color: #25d366;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    width: auto;
+  }
+
+  .btn-wa:hover {
+    background-color: #128c7e;
+    color: white;
+  }
+}
+
+@media (max-width: 479px) {
+  .product-thumb {
+    height: 120px !important;
+  }
+
+  .product-thumb-overlay img {
+    max-height: 120px;
+  }
+
+  .no-image-lg {
+    height: 120px !important;
+  }
+
+  .detail-label {
+    font-size: 9px;
+    min-width: 0;
+  }
+
+  .detail-value {
+    font-size: 10px;
+  }
+
+  .content {
+    padding: 6px !important;
+  }
+
+  .detail-row {
+    gap: 4px;
+    margin-bottom: 3px;
+  }
+
+  .overlay-label img {
+    height: 40px !important;
+  }
+
+  /* Small-screen fallback: stack label and value if space is constrained */
+  .detail-row {
+    flex-wrap: wrap !important;
+    align-items: flex-start;
+  }
+
+  .detail-label {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+    white-space: normal !important;
+  }
+
+  .detail-value {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+  }
+}
+
+/* FOOTER RESPONSIVE */
+@media (max-width: 767px) {
+  footer {
+    background-color: #1f2937 !important;
+    padding: 15px 10px !important;
+    margin-top: 15px;
+  }
+
+  footer .container {
+    padding: 0;
+  }
+
+  footer .row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  footer .col-sm-5,
+  footer .col-sm-1 {
+    width: 100% !important;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  footer h1 {
+    font-size: 20px !important;
+    margin: 6px 0 !important;
+  }
+
+  footer h5 {
+    font-size: 11px !important;
+    margin: 6px 0 !important;
+    font-weight: bold;
+  }
+
+  footer p {
+    font-size: 10px !important;
+    line-height: 1.4;
+    margin: 0 !important;
+  }
+
+  footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  footer ul li {
+    margin-bottom: 6px;
+  }
+
+  footer ul li a {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 10px;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+  }
+
+  footer ul li a:hover {
+    background-color: #374151;
+    color: white;
+  }
+
+  footer .call-button {
+    background-color: #007bff;
+    color: white;
+  }
+
+  footer .chat-button {
+    background-color: #25d366;
+    color: white;
+  }
+
+  footer .sitemap-img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  footer .powered-container {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #374151;
+  }
+
+  footer .powered-container p {
+    font-size: 9px !important;
+    margin: 0;
+  }
+
+  footer .powered-container a {
+    color: #93c5fd;
+  }
+}
+
+@media (max-width: 479px) {
+  footer h1 {
+    font-size: 18px !important;
+  }
+
+  footer h5 {
+    font-size: 10px !important;
+  }
+
+  footer p {
+    font-size: 9px !important;
+  }
+
+  footer ul li a {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  footer .sitemap-img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* PRODUCT LIST PAGE RESPONSIVE */
+@media (max-width: 767px) {
+  .product-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .product-list .card {
+    display: block;
+  }
+
+  .product-list .product-thumb {
+    height: 140px;
+  }
+
+  .product-list .content {
+    padding: 8px;
+  }
+}
+
+/* Reduce top carousel / banner height by ~25% to avoid oversized hero images */
+/* Applies to common banner/carousel selectors; keeps images cropped cleanly */
+.carousel,
+.carousel-inner,
+.carousel-item,
+.page-banner,
+.hero,
+.header-banner,
+.banner {
+  max-height: 50vh;
+  overflow: hidden;
+}
+
+.carousel .carousel-item img,
+.carousel-inner img,
+.page-banner img,
+.hero img,
+.header-banner img,
+.banner img,
+.product-image img {
+  max-height: 50vh;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Stronger caps for narrower viewports */
+@media (max-width: 767px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .page-banner,
+  .hero,
+  .header-banner,
+  .banner {
+    max-height: 45vh;
+  }
+
+  .carousel .carousel-item img,
+  .carousel-inner img,
+  .page-banner img,
+  .hero img,
+  .header-banner img,
+  .banner img,
+  .product-image img {
+    max-height: 45vh;
+  }
+}
+
+@media (max-width: 479px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .page-banner,
+  .hero,
+  .header-banner,
+  .banner {
+    max-height: 40vh;
+  }
+
+  .carousel .carousel-item img,
+  .carousel-inner img,
+  .page-banner img,
+  .hero img,
+  .header-banner img,
+  .banner img,
+  .product-image img {
+    max-height: 40vh;
+  }
+}
+
+/* Very narrow phones (e.g. 430x932) — more precise cap for carousel */
+@media (max-width: 430px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .page-banner,
+  .hero,
+  .header-banner,
+  .banner {
+    max-height: 260px !important;
+    overflow: hidden;
+  }
+
+  .carousel .carousel-item img,
+  .carousel-inner img,
+  .page-banner img,
+  .hero img,
+  .header-banner img,
+  .banner img,
+  .product-image img {
+    max-height: 260px !important;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* tighten spacing above the banner to improve perceived precision */
+  #site-header {
+    padding-bottom: 6px !important;
+  }
+
+  .container.p-2.bg-dark {
+    padding-bottom: 6px !important;
+  }
+
+  /* Larger overlay logo on very narrow phones */
+  /* Make overlay cover the product image but inset so nav buttons stay accessible */
+  .overlay-label {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;    /* leave room for prev button */
+    right: 0 !important;   /* leave room for next button */
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    z-index: 50 !important;
+    background: transparent !important;
+    pointer-events: none !important;
+  }
+
+  .overlay-label img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    pointer-events: none !important;
+  }
+
+  /* Gallery logo container for very narrow phones (430px)
+     - keeps logo contained, visually consistent, and avoids covering controls
+     - pointer-events:none so navigation buttons remain clickable underneath */
+  .gallery-logo-container {
+    position: absolute !important;
+    bottom: 8px !important;
+    right: 8px !important;
+    background:none !important;
+    padding: 4px 6px !important;
+    border-radius: 6px !important;
+    z-index: 60 !important;
+    pointer-events: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* keep legacy selectors for compatibility but prefer the container */
+  .gallery-logo,
+  .gallery .logo {
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .gallery-logo-container .gallery-logo img,
+  .gallery-logo-container .gallery .logo img,
+  .gallery-logo img,
+  .gallery .logo img {
+    height: 28px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .product-list {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .product-list .product-thumb {
+    height: 120px;
+  }
+
+  .product-list .content {
+    padding: 6px;
+  }
+}
+
+/* Ensure product detail label/value are side-by-side on very narrow phones (<=430px)
+   Use a grid with fixed label column and flexible value column to avoid centering/wrapping issues */
+@media (max-width: 430px) {
+  .detail-row {
+    display: grid !important;
+    grid-template-columns: 110px 1fr;
+    gap: 8px;
+    margin-bottom: 6px;
+    align-items: start;
+  }
+
+  .detail-label {
+    text-align: left !important;
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px !important;
+    color: rgba(230,238,248,0.65) !important;
+    padding-right: 4px;
+  }
+
+  .detail-value {
+    text-align: left !important;
+    font-size: 12px !important;
+    color: #e6eef8 !important;
+    word-break: break-word;
+  }
+}
+
+/* SEARCH & FILTER FORM MOBILE */
+@media (max-width: 767px) {
+  #searchFormMenu {
+    width: 100% !important;
+    /* visually separate search area on mobile */
+    padding: 6px 0 !important;
+  }
+
+  /* Stack inputs on small phones: input/select first, then full-width Search button */
+  #searchFormMenu .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Make selects and inputs expand to available width */
+  #searchFormMenu .form-select {
+    width: 100% !important;
+    padding: 8px 10px !important;
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #e6eef8;
+  }
+
+  #searchFormMenu .form-control {
+    width: 100% !important;
+    padding: 8px 10px !important;
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #e6eef8;
+  }
+
+  /* Make the Search button occupy full width and match mobile styling */
+  #searchFormMenu .btn {
+    width: 100% !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    text-align: center;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #e6eef8;
+  }
+
+  #searchFormMenu .btn:hover {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(14,165,233,0.6);
+  }
+}
+
+@media (max-width: 479px) {
+  #searchFormMenu {
+    width: 100% !important;
+  }
+
+  #searchFormMenu .input-group {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #searchFormMenu .form-select,
+  #searchFormMenu .form-control,
+  #searchFormMenu .btn {
+    width: 100% !important;
+    padding: 6px 8px !important;
+    font-size: 10px;
+    min-width: auto;
+  }
+}
+
+/* PRODUCT DETAIL PAGE RESPONSIVE */
+@media (max-width: 767px) {
+  .product-details {
+    padding: 10px !important;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .product-details h2 {
+    font-size: 16px !important;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .product-image {
+    padding: 6px;
+    background: #f8f9fa;
+    margin-bottom: 10px;
+  }
+
+  .product-image img {
+    max-height: 160px;
+    object-fit: contain;
+  }
+
+  .interchanges, .description, .stock {
+    margin-bottom: 10px;
+  }
+
+  .interchanges h4, 
+  .description h4, 
+  .stock h4 {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .interchanges ul,
+  .description ul {
+    padding-left: 12px;
+  }
+
+  .interchanges ul li,
+  .description ul li {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .product-details p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 6px;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .button-group a,
+  .button-group button {
+    width: 100%;
+    padding: 8px 10px !important;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 479px) {
+  .product-details {
+    padding: 8px !important;
+  }
+
+  .product-details h2 {
+    font-size: 14px !important;
+    margin-bottom: 8px;
+  }
+
+  .product-image {
+    padding: 4px;
+    margin-bottom: 8px;
+  }
+
+  .product-image img {
+    max-height: 140px;
+  }
+
+  .interchanges h4, 
+  .description h4, 
+  .stock h4 {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .interchanges ul,
+  .description ul {
+    padding-left: 10px;
+  }
+
+  .interchanges ul li,
+  .description ul li {
+    font-size: 10px;
+    margin-bottom: 3px;
+  }
+
+  .product-details p {
+    font-size: 10px;
+  }
+
+  .button-group a,
+  .button-group button {
+    padding: 6px 8px !important;
+    font-size: 11px;
+  }
+}
+
+/* GENERIC BUTTON STYLES FOR MOBILE */
+@media (max-width: 767px) {
+  .btn {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    border-radius: 4px;
+  }
+
+  .btn-primary {
+    background-color: #0ea5e9;
+    border-color: #0ea5e9;
+  }
+
+  .btn-secondary {
+    background-color: #6b7280;
+    border-color: #6b7280;
+  }
+
+  .btn-primary:hover {
+    background-color: #0284c7;
+    border-color: #0284c7;
+  }
+
+  .btn-secondary:hover {
+    background-color: #4b5563;
+    border-color: #4b5563;
+  }
+}
+
+@media (max-width: 479px) {
+  .btn {
+    padding: 5px 8px !important;
+    font-size: 10px !important;
+  }
+}

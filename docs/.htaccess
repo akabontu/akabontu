@@ -1,0 +1,4 @@
+# Proteksi folder dokumentasi internal
+# Mencegah akses langsung ke dokumen internal
+
+Require all denied

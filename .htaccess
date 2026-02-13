@@ -1,0 +1,46 @@
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Canonical homepage URL
+    RewriteRule ^index\.php$ / [R=301,L,NC]
+
+    # Redirect legacy /adpanel paths to root paths
+    RewriteRule ^adpanel/?$ / [R=301,L,NC]
+    RewriteRule ^adpanel/index\.php$ / [R=301,L,NC]
+    RewriteRule ^adpanel/(.+)$ /$1 [R=301,L,NC]
+
+    # Dynamic sitemap endpoint
+    RewriteRule ^sitemap\.xml$ sitemap.php [L,NC]
+
+    # Block hidden files and folders (except .well-known)
+    RewriteRule "(^|/)\.(?!well-known/)" - [F,L]
+
+    # Block direct access to sensitive root files
+    RewriteRule ^(composer\.(json|lock)|\.env|\.gitignore|phpunit\.xml(\.dist)?)$ - [F,L,NC]
+</IfModule>
+
+# Protect sensitive directories
+<IfModule mod_rewrite.c>
+    RewriteRule ^db/ - [F,L,NC]
+    RewriteRule ^vendor/ - [F,L,NC]
+</IfModule>
+
+# Extra protection for config files
+<FilesMatch "^(kon\.php|kon\.php\.example|site-config\.php)$">
+    Require all denied
+</FilesMatch>
+
+# Disable MIME sniffing
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Custom error pages
+ErrorDocument 403 /webpage/error/403.php
+ErrorDocument 404 /webpage/error/404.php
+ErrorDocument 500 /webpage/error/500.php

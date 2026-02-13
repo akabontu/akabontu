@@ -1,0 +1,10 @@
+{
+  "name": "adpanel/adpanel",
+  "description": "adPanel admin panel",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4",
+    "phpoffice/phpspreadsheet": "^1.28"
+  }
+}
