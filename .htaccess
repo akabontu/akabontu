@@ -7,10 +7,10 @@ ServerSignature Off
     # Canonical homepage URL
     RewriteRule ^index\.php$ / [R=301,L,NC]
 
-    # Redirect legacy /adpanel paths to root paths
-    RewriteRule ^adpanel/?$ / [R=301,L,NC]
-    RewriteRule ^adpanel/index\.php$ / [R=301,L,NC]
-    RewriteRule ^adpanel/(.+)$ /$1 [R=301,L,NC]
+    # Force HTTPS and canonical host
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} !^magzgroup\.co\.id$ [NC]
+    RewriteRule ^ https://magzgroup.co.id%{REQUEST_URI} [R=301,L]
 
     # Dynamic sitemap endpoint
     RewriteRule ^sitemap\.xml$ sitemap.php [L,NC]
@@ -41,6 +41,6 @@ ServerSignature Off
 </IfModule>
 
 # Custom error pages
-ErrorDocument 403 /webpage/error/403.php
-ErrorDocument 404 /webpage/error/404.php
-ErrorDocument 500 /webpage/error/500.php
+ErrorDocument 403 /adpanel/webpage/error/403.php
+ErrorDocument 404 /adpanel/webpage/error/404.php
+ErrorDocument 500 /adpanel/webpage/error/500.php

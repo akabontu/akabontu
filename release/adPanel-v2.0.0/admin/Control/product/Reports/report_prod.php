@@ -13,7 +13,7 @@ $categories = [
     'Engine','Electrical','Brake System','Cylinder','Axle & Stering','Cabin','Filter','Attachment','Final Drive','Hydraulic System','General','Alternatif',
 ];
 $summary = [];
-$sql = "SELECT brand, category, sum(qty) as total_no FROM Product GROUP BY brand, category";
+$sql = "SELECT brand, category, sum(qty) as total_no FROM product GROUP BY brand, category";
 $result = mysqli_query($kon, $sql);
 if ($result) {
     while($row = mysqli_fetch_assoc($result)) {
@@ -43,35 +43,35 @@ if ($result) {
             <div class="dashboard-card" style="background:#e0e7ef; box-shadow:0 2px 8px #2563eb22;">
                 <h3 style="color:#2563eb;">Total Product</h3>
                 <div class="big" style="font-size:2.8em; color:#2563eb; margin-bottom:8px;">
-                    <?php $total = mysqli_query($kon, "SELECT COUNT(no) as total FROM Product"); $t = mysqli_fetch_assoc($total); echo $t['total'] ?? 0; ?>
+                    <?php $total = mysqli_query($kon, "SELECT COUNT(no) as total FROM product"); $t = mysqli_fetch_assoc($total); echo $t['total'] ?? 0; ?>
                 </div>
                 <div class="sub">All Brands & Categories</div>
             </div>
             <div class="dashboard-card" style="background:#f3f6fa; box-shadow:0 2px 8px #2563eb22;">
                 <h3 >Brand Terbanyak</h3>
                 <div class="big">
-                    <?php $maxb = mysqli_query($kon, "SELECT brand, COUNT(no) as total FROM Product GROUP BY brand ORDER BY total DESC LIMIT 1"); $mb = mysqli_fetch_assoc($maxb); echo $mb['brand'] ?? '-'; ?>
+                    <?php $maxb = mysqli_query($kon, "SELECT brand, COUNT(no) as total FROM product GROUP BY brand ORDER BY total DESC LIMIT 1"); $mb = mysqli_fetch_assoc($maxb); echo $mb['brand'] ?? '-'; ?>
                 </div>
                 <div class="sub" ><?php echo $mb['total'] ?? 0; ?></div>
             </div>
             <div class="dashboard-card" style="background:#f3f6fa; box-shadow:0 2px 8px #2563eb22;">
                 <h3 >Kategori Terbanyak</h3>
                 <div class="big" style="font-size:2.2em; color:#2563eb; margin-bottom:8px;">
-                    <?php $maxc = mysqli_query($kon, "SELECT category, COUNT(no) as total FROM Product GROUP BY category ORDER BY total DESC LIMIT 1"); $mc = mysqli_fetch_assoc($maxc); echo $mc['category'] ?? '-'; ?>
+                    <?php $maxc = mysqli_query($kon, "SELECT category, COUNT(no) as total FROM product GROUP BY category ORDER BY total DESC LIMIT 1"); $mc = mysqli_fetch_assoc($maxc); echo $mc['category'] ?? '-'; ?>
                 </div>
                 <div class="sub"> <?php echo $mc['total'] ?? 0; ?></div>
             </div>
 			<div class="dashboard-card" style="background:#f3f6fa; box-shadow:0 2px 8px #2563eb22;">
                 <h3 style="color:#2563eb;">Stock Brand</h3>
                 <div class="big" style="font-size:2.2em; color:#2563eb; margin-bottom:8px;">
-                    <?php $maxc = mysqli_query($kon, "SELECT brand, sum(qty) as total FROM Product GROUP BY brand ORDER BY total DESC LIMIT 1"); $mc = mysqli_fetch_assoc($maxc); echo $mc['brand'] ?? '-'; ?>
+                    <?php $maxc = mysqli_query($kon, "SELECT brand, sum(qty) as total FROM product GROUP BY brand ORDER BY total DESC LIMIT 1"); $mc = mysqli_fetch_assoc($maxc); echo $mc['brand'] ?? '-'; ?>
                 </div>
                 <div class="sub">Quantity: <?php echo $mc['total'] ?? 0; ?></div>
             </div>
 			<div class="dashboard-card" style="background:#f3f6fa; box-shadow:0 2px 8px #2563eb22;">
                 <h3 style="color:#2563eb;">Stock category</h3>
                 <div class="big" style="font-size:2.2em; color:#2563eb; margin-bottom:8px;">
-                    <?php $maxc = mysqli_query($kon, "SELECT category, sum(qty) as total FROM Product GROUP BY category ORDER BY total DESC LIMIT 1"); $mc = mysqli_fetch_assoc($maxc); echo $mc['category'] ?? '-'; ?>
+                    <?php $maxc = mysqli_query($kon, "SELECT category, sum(qty) as total FROM product GROUP BY category ORDER BY total DESC LIMIT 1"); $mc = mysqli_fetch_assoc($maxc); echo $mc['category'] ?? '-'; ?>
                 </div>
                 <div class="sub">Quantity: <?php echo $mc['total'] ?? 0; ?></div>
             </div>

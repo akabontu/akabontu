@@ -37,7 +37,7 @@ $no = intval($_GET['no']);
 if ($no <= 0) { header('Location: /adpanel/admin/?menu=product'); exit; }
 
 // First, get the part_number for cleanup in itc_pn table
-$stmt = mysqli_prepare($kon, "SELECT part_number FROM Product WHERE `No` = ?");
+$stmt = mysqli_prepare($kon, "SELECT part_number FROM product WHERE `No` = ?");
 mysqli_stmt_bind_param($stmt, 'i', $no);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result($stmt, $part_number);
@@ -77,8 +77,8 @@ $productImgDir = $rootDir . '/admin/Control/product/img/' . $no;
 delete_dir_recursive($productImgDir);
 
 
-// Delete from Product table
-$stmt = mysqli_prepare($kon, "DELETE FROM Product WHERE `No` = ?");
+// Delete from product table
+$stmt = mysqli_prepare($kon, "DELETE FROM product WHERE `No` = ?");
 mysqli_stmt_bind_param($stmt, 'i', $no);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);

@@ -67,7 +67,7 @@ if (empty($part_number)) {
 
 // Fetch product details
 $part_number = mysqli_real_escape_string($kon, $part_number);
-$query = "SELECT * FROM Product WHERE part_number = '$part_number'";
+$query = "SELECT * FROM product WHERE part_number = '$part_number";
 $result = mysqli_query($kon, $query);
 if (!$result || mysqli_num_rows($result) == 0) {
     die('Product not found.');

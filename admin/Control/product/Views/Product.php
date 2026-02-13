@@ -56,9 +56,9 @@ function tampilkan_product() {
         $searchKeyword = isset($_GET['search']) ? trim($_GET['search']) : '';
         if (!empty($searchKeyword)) {
             $searchTerm = '%' . mysqli_real_escape_string($kon, $searchKeyword) . '%';
-            $query = mysqli_query($kon, "SELECT * FROM Product WHERE part_number LIKE '$searchTerm' OR description LIKE '$searchTerm' OR brand LIKE '$searchTerm' OR category LIKE '$searchTerm' OR itc LIKE '$searchTerm' ORDER BY `No` DESC");
+            $query = mysqli_query($kon, "SELECT * FROM product WHERE part_number LIKE '$searchTerm' OR description LIKE '$searchTerm' OR brand LIKE '$searchTerm' OR category LIKE '$searchTerm' OR itc LIKE '$searchTerm' ORDER BY `No` DESC");
         } else {
-            $query = mysqli_query($kon, "SELECT * FROM Product ORDER BY `No` DESC");
+            $query = mysqli_query($kon, "SELECT * FROM product ORDER BY `No` DESC");
         }
         // Base URL for assets when the app is installed under a subfolder (e.g., /adPanel)
         $baseUrl = rtrim(dirname($_SERVER['SCRIPT_NAME'], 4), '/');

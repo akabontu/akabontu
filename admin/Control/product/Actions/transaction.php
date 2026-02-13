@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_trx'])) {
 			}
 			$transactionStarted = true;
 
-			$stmt = mysqli_prepare($kon, "SELECT Qty FROM Product WHERE part_number = ? LIMIT 1 FOR UPDATE");
+			$stmt = mysqli_prepare($kon, "SELECT Qty FROM product WHERE part_number = ? LIMIT 1 FOR UPDATE");
 			if (!$stmt) {
 				throw new RuntimeException('Prepare Product gagal: ' . mysqli_error($kon));
 			}
@@ -168,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_trx'])) {
 			<input id="part_number" name="part_number" class="input" type="text" placeholder="Cari Part Number" list="part_number_list" autocomplete="off">
 			<datalist id="part_number_list">
 				<?php
-				$pnRows = mysqli_query($kon, "SELECT part_number FROM Product ORDER BY part_number ASC");
+				$pnRows = mysqli_query($kon, "SELECT part_number FROM product ORDER BY part_number ASC");
 				if ($pnRows):
 					while ($pn = mysqli_fetch_assoc($pnRows)):
 				?>
@@ -612,7 +612,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_trx'])) {
 			</thead>
 			<tbody>
 				<?php
-				$stockRows = mysqli_query($kon, "SELECT `No`, part_number, description, brand, category, Qty FROM Product ORDER BY `No` DESC");
+				$stockRows = mysqli_query($kon, "SELECT `No`, part_number, description, brand, category, Qty FROM product ORDER BY `No` DESC");
 				if ($stockRows && mysqli_num_rows($stockRows) > 0):
 					while ($row = mysqli_fetch_assoc($stockRows)):
 				?>

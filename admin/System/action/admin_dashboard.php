@@ -6,7 +6,7 @@ if (!defined('IN_MENU_ADMIN')) {
 }
 
 global $kon;
-$product_count = mysqli_fetch_assoc(mysqli_query($kon, "SELECT COUNT(*) as total FROM Product"))['total'] ?? 0;
+$product_count = mysqli_fetch_assoc(mysqli_query($kon, "SELECT COUNT(*) as total FROM product"))['total'] ?? 0;
 $product_itc_count = mysqli_fetch_assoc(mysqli_query($kon, "SELECT COUNT(*) as total FROM itc_product"))['total'] ?? 0;
 $supplier_count = mysqli_fetch_assoc(mysqli_query($kon, "SELECT COUNT(*) as total FROM Supplier"))['total'] ?? 0;
 $customer_count = mysqli_fetch_assoc(mysqli_query($kon, "SELECT COUNT(*) as total FROM Customer"))['total'] ?? 0;
@@ -27,13 +27,13 @@ $stock_data = [
 $recent_transactions = false;
 
 if ($tables_exist) {
-    // Get stock statistics from Product table
+    // Get stock statistics from product table
     $stock_query = "SELECT 
         COUNT(*) as total_items,
         COALESCE(SUM(Qty), 0) as total_stock,
         SUM(CASE WHEN Qty BETWEEN 1 AND 7 THEN 1 ELSE 0 END) as low_stock,
         SUM(CASE WHEN Qty = 0 THEN 1 ELSE 0 END) as out_of_stock
-    FROM Product";
+    FROM product";
     $stock_result = mysqli_query($kon, $stock_query);
     if ($stock_result) {
         $stock_data = mysqli_fetch_assoc($stock_result) ?? $stock_data;

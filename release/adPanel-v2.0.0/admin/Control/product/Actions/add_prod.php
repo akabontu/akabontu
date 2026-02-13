@@ -17,7 +17,7 @@ if (!function_exists('product_has_image_column')) {
   function product_has_image_column(mysqli $conn): bool {
     static $hasColumn = null;
     if ($hasColumn !== null) return $hasColumn;
-    $result = mysqli_query($conn, "SHOW COLUMNS FROM Product LIKE 'image'");
+    $result = mysqli_query($conn, "SHOW COLUMNS FROM product LIKE 'image'");
     if ($result) {
       $hasColumn = mysqli_num_rows($result) > 0;
       mysqli_free_result($result);
@@ -151,14 +151,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         $transactionStarted = true;
 
                         if ($hasProductImageColumn && $primaryImageData !== null) {
-                          $stmt = mysqli_prepare($kon, "INSERT INTO Product (part_number, itc, description, brand, category, Qty, UoM, berat, massa, kondisi,loc_stock,image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                          $stmt = mysqli_prepare($kon, "INSERT INTO product (part_number, itc, description, brand, category, Qty, UoM, berat, massa, kondisi,loc_stock,image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                           if (!$stmt) {
                             throw new RuntimeException('Prepare product gagal: ' . mysqli_error($kon));
                           }
                           mysqli_stmt_bind_param($stmt, "sssssisisssb", $part_number, $itc, $description, $brand, $category, $qty, $uom, $brt, $massa, $kondisi, $loc_stock, $primaryImageData);
                           mysqli_stmt_send_long_data($stmt, 11, $primaryImageData);
                         } else {
-                          $stmt = mysqli_prepare($kon, "INSERT INTO Product (part_number, itc, description, brand, category, Qty, UoM, berat, massa,kondisi,loc_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                          $stmt = mysqli_prepare($kon, "INSERT INTO product (part_number, itc, description, brand, category, Qty, UoM, berat, massa,kondisi,loc_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                           if (!$stmt) {
                             throw new RuntimeException('Prepare product gagal: ' . mysqli_error($kon));
                           }
@@ -349,7 +349,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
           }
 
           // Check if part_number already exists
-          $check = mysqli_prepare($kon, "SELECT 1 FROM Product WHERE part_number = ?");
+          $check = mysqli_prepare($kon, "SELECT 1 FROM product WHERE part_number = ?");
           mysqli_stmt_bind_param($check, "s", $pn);
           mysqli_stmt_execute($check);
           mysqli_stmt_bind_result($check, $exists);
@@ -360,7 +360,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
           }
           mysqli_stmt_close($check);
 
-          $stmt = mysqli_prepare($kon, "INSERT INTO Product (part_number, itc, description, brand, category, Qty, UoM, berat, massa,kondisi,loc_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          $stmt = mysqli_prepare($kon, "INSERT INTO product (part_number, itc, description, brand, category, Qty, UoM, berat, massa,kondisi,loc_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
           if (!$stmt) { 
             $importErrors[] = "Row $row: prepare failed: " . mysqli_error($kon); 
             continue; 
@@ -483,7 +483,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
           }
 
           // Check if part_number already exists
-          $check = mysqli_prepare($kon, "SELECT 1 FROM Product WHERE part_number = ?");
+          $check = mysqli_prepare($kon, "SELECT 1 FROM product WHERE part_number = ?");
           mysqli_stmt_bind_param($check, "s", $pn);
           mysqli_stmt_execute($check);
           mysqli_stmt_bind_result($check, $exists);
@@ -495,7 +495,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['import'])) {
             continue;
           }
 
-          $stmt = mysqli_prepare($kon, "INSERT INTO Product (part_number, itc, description, brand, category, Qty, UoM, berat, massa,kondisi,loc_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          $stmt = mysqli_prepare($kon, "INSERT INTO product (part_number, itc, description, brand, category, Qty, UoM, berat, massa,kondisi,loc_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
           if (!$stmt) { 
             $importErrors[] = "Row $row: prepare failed: " . mysqli_error($kon); 
             continue; 

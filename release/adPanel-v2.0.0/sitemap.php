@@ -33,7 +33,7 @@ $connection = @mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 if ($connection) {
     mysqli_set_charset($connection, 'utf8mb4');
 
-    $query = 'SELECT part_number, brand, category FROM Product WHERE part_number IS NOT NULL AND part_number <> ""';
+    $query = 'SELECT part_number, brand, category FROM product WHERE part_number IS NOT NULL AND part_number <> ""';
     $result = mysqli_query($connection, $query);
 
     if ($result) {

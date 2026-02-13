@@ -94,9 +94,12 @@ include 'webpage/includes/site-config.php';
 <?php
 include 'admin/System/kon.php';
 
-// Add active column if not exists (one-time operation)
-$query = "ALTER TABLE banner_up ADD COLUMN IF NOT EXISTS active TINYINT(1) DEFAULT 1";
-mysqli_query($kon, $query);
+// Add active column if not exists (one-time operation for older MySQL)
+$colCheckSql = "SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'banner_up' AND COLUMN_NAME = 'active'";
+$colCheck = mysqli_query($kon, $colCheckSql);
+if ($colCheck && mysqli_num_rows($colCheck) === 0) {
+    mysqli_query($kon, "ALTER TABLE banner_up ADD COLUMN active TINYINT(1) DEFAULT 1");
+}
 
 // Fetch distinct brands for menu
 $brands = [
@@ -157,8 +160,8 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
     }
     mysqli_stmt_close($stmt);
 
-    // Also check Product.itc column
-    $checkProductItcQuery = "SELECT part_number FROM Product WHERE itc = ?";
+    // Also check product.itc column
+    $checkProductItcQuery = "SELECT part_number FROM product WHERE itc = ?";
     $stmt = mysqli_prepare($kon, $checkProductItcQuery);
     mysqli_stmt_bind_param($stmt, "s", $searchQuery);
     mysqli_stmt_execute($stmt);
@@ -171,7 +174,7 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
     mysqli_stmt_close($stmt);
 
     // Check if query is exact part_number
-    $checkQuery = "SELECT part_number FROM Product WHERE part_number = ?";
+    $checkQuery = "SELECT part_number FROM product WHERE part_number = ?";
     $stmt = mysqli_prepare($kon, $checkQuery);
     mysqli_stmt_bind_param($stmt, "s", $searchQuery);
     mysqli_stmt_execute($stmt);
@@ -197,7 +200,7 @@ $currentPage = max(1, $currentPage); // Ensure page is at least 1
 $offset = ($currentPage - 1) * $productsPerPage;
 
 // Get total products count
-$countQuery = "SELECT COUNT(*) as total FROM Product" . $where;
+$countQuery = "SELECT COUNT(*) as total FROM product" . $where;
 $countResult = mysqli_query($kon, $countQuery);
 $totalProducts = 0;
 if ($countResult) {
@@ -208,7 +211,7 @@ if ($countResult) {
 $totalPages = ceil($totalProducts / $productsPerPage);
 
 // Fetch products with pagination
-$query = "SELECT * FROM Product" . $where . " LIMIT $offset, $productsPerPage";
+$query = "SELECT * FROM product" . $where . " LIMIT $offset, $productsPerPage";
 
 $products = [];
 $result = mysqli_query($kon, $query);

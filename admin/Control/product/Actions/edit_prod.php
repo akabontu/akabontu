@@ -11,7 +11,7 @@ elseif (isset($_POST['no'])) $no = intval($_POST['no']);
 if ($no <= 0) { header('Location: ../../../System/action/menu_admin.php?menu=product'); exit; }
 
 // Fetch existing record
-$stmt = mysqli_prepare($kon, "SELECT * FROM Product WHERE `No` = ? LIMIT 1");
+$stmt = mysqli_prepare($kon, "SELECT * FROM product WHERE `No` = ? LIMIT 1");
 mysqli_stmt_bind_param($stmt, 'i', $no);
 mysqli_stmt_execute($stmt);
 $res = mysqli_stmt_get_result($stmt);
